@@ -1,17 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Admin from './views/index';
+import {Provider} from 'react-redux';
+import Layout from './views/Layout';
 import './styles/style.less';
+import store from './store';
 
-export class HelloMessage extends React.Component {
-	constructor(props){
-		super(props);
-	}
-  render() {
-    return (
-    	<Admin {...this.props}/> 
-    )
-  }
-}
+const app= document.getElementById('app');
 
-ReactDOM.render(<HelloMessage name="Hello Google!.." />, document.getElementById('app'));
+ReactDOM.render(<Provider store={store}>
+	<Layout/>
+</Provider>, app);

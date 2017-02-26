@@ -15,6 +15,7 @@
   "dependencies": {
     "cors": "^2.8.1",
     "express": "^4.14.1",
-    "express-generator": "^4.14.1"
+    "express-generator": "^4.14.1",
+    "mongoose": "^4.8.5"
   }
 }
