@@ -2,6 +2,14 @@ import React from 'react';
 import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {fetcUser} from '../actions/userActions'
+
+@connect((store) => {
+	return {
+		userRecord:store.user
+	}
+})
 export default  class Admin extends React.Component{
 	constructor(props){
 		super(props);
@@ -12,7 +20,9 @@ export default  class Admin extends React.Component{
 	}
 	onFormSubmit(e){
 		e.preventDefault();
-		axios.get('http://localhost:4000/')
+		this.props.dispatch(fetcUser());
+
+		/*axios.get('http://localhost:4000/')
 		  .then( (response) => {
 		    console.log(response.data);
 		    this.setState({
@@ -21,20 +31,19 @@ export default  class Admin extends React.Component{
 		  })
 		  .catch((error) => {
 		    console.log(error);
-		});
+		});*/
 	}
 	componentDidMount(){
-		console.log("componentDidMount!...")
+		console.log(this.props.userRecord);
 	}
 	render() {
-		const {name} = this.props;
-		console.log(name)
+		const {name} = this.props.userRecord;
 		return(
 			<div className="container">
 				<form>
 				  <div className="form-group">
 				    <label >Name:</label>
-				    <input type="text" className="form-control col-xs-3" id="text" value={this.state.name} readOnly/>
+				    <input type="text" className="form-control col-xs-3" id="text" value={name} readOnly/>
 				  </div>
 				  <div className="form-group">
 				    <label >Password:</label>
